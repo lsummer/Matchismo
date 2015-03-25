@@ -37,6 +37,17 @@
     [self updateUI];
 }
 
+- (IBAction)touchStartButton:(UIButton *)sender {
+    [self.game resetGame];
+    for (UIButton *cardButton in self.cardButtons) {
+        NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
+        Card *card = [self.game cardAtIndex:cardIndex];
+        card.chosen=NO;
+        card.matched=NO;
+    }
+
+    [self updateUI];
+}
 - (void)updateUI
 {
     for (UIButton *cardButton in self.cardButtons) {

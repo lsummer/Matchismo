@@ -11,6 +11,9 @@
 @interface CardMatchingGame()
 @property (nonatomic, readwrite) NSInteger score;    // make score writable in out private API
 @property (nonatomic, strong) NSMutableArray *cards; // of Card
+@property (nonatomic, strong) Deck *deck;
+@property (nonatomic, readwrite) NSInteger count;
+
 @end
 
 @implementation CardMatchingGame
@@ -24,7 +27,9 @@
 - (instancetype)initWithCardCount:(NSUInteger)count
                         usingDeck:(Deck *)deck
 {
+    
     self = [super init];
+    
     
     if (self) {
         for (NSUInteger i = 0; i < count; i++) {
@@ -38,7 +43,8 @@
             }
         }
     }
-
+    self.deck = deck;
+    self.count = count;
     return self;
 }
 
@@ -89,5 +95,17 @@ static const int COST_TO_CHOOSE = 1;
 {
     return (index < [self.cards count]) ? self.cards[index] : nil;
 }
-
+- (void)resetGame
+{
+    self.score = 0;
+    [self.cards removeAllObjects];
+    for (NSUInteger i = 0; i < self.count; i++) {
+        Card *card = [self.deck drawRandomCard];
+        if (card) {
+            [self.cards addObject:card];
+        } else {
+            break;
+        }
+    }
+}
 @end
