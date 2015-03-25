@@ -15,10 +15,12 @@
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (nonatomic, weak) Boolean twoGame;
 @end
 
 @implementation CardGameViewController
 
+@synthesize twoGame = _twoGame;
 - (CardMatchingGame *)game
 {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
@@ -36,6 +38,28 @@
     [self.game chooseCardAtIndex:cardIndex];
     [self updateUI];
 }
+
+
+- (IBAction)changeSegment:(UISegmentedControl *)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
+    
+    if (selectedSegment == 0) {
+        [self setTwoGame];
+    }
+    else{
+        [self setThreeGame];
+    }
+}
+- (void)setTwoGame
+{
+    twoGame;
+}
+- (void)setThreeGame
+{
+    twoGame.isTwoGame = NO;
+}
+
 
 - (void)updateUI
 {
