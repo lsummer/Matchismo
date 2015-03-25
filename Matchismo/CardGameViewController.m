@@ -15,12 +15,13 @@
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (nonatomic, weak) Boolean twoGame;
+@property (nonatomic) Boolean twoGame;
 @end
 
 @implementation CardGameViewController
 
 @synthesize twoGame = _twoGame;
+
 - (CardMatchingGame *)game
 {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
@@ -53,11 +54,13 @@
 }
 - (void)setTwoGame
 {
-    twoGame;
+    NSLog(@"isTwoGame");
+    self.twoGame = YES;
 }
 - (void)setThreeGame
 {
-    twoGame.isTwoGame = NO;
+    NSLog(@"isThreeGame");
+    self.twoGame = NO;
 }
 
 

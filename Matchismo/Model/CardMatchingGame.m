@@ -51,6 +51,7 @@ static const int COST_TO_CHOOSE = 1;
 {
     Card *card = [self cardAtIndex:index];
     
+    
     if (!card.isMatched) {
         if (card.isChosen) {
             card.chosen = NO;

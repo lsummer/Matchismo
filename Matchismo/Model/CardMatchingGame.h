@@ -17,7 +17,10 @@
 
 - (void)chooseCardAtIndex:(NSUInteger)index;
 - (Card *)cardAtIndex:(NSUInteger)index;
+- (void)chooseSecondCardAtIndex:(NSUInteger)index;
+- (Card *)secondCardAtIndex:(NSUInteger)index;
 
 @property (nonatomic, readonly) NSInteger score; // make score read only in public API
+@property (nonatomic) BOOL twoGame; // is a two games card
 
 @end
