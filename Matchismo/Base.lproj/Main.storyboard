@@ -157,7 +157,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRe-SO-kIy">
                                 <rect key="frame" x="254" y="518" width="46" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Start">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -166,11 +166,25 @@
                                     <action selector="touchStartButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="aAt-6b-Tdz"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KbN-ud-I1Q">
+                                <rect key="frame" x="112" y="520" width="97" height="29"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <segments>
+                                    <segment title="Two"/>
+                                    <segment title="Three"/>
+                                </segments>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="changedGameTypeSegment:" destination="vXZ-lx-hvc" eventType="valueChanged" id="4aN-FB-8Uu"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.25098040699958801" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="StartButton" destination="gRe-SO-kIy" id="sQY-36-Sgh"/>
                         <outlet property="scoreLabel" destination="gmh-bm-OdJ" id="sct-8d-4fN"/>
+                        <outlet property="startButton" destination="gRe-SO-kIy" id="EAg-d5-Yk4"/>
                         <outletCollection property="cardButtons" destination="INI-ut-bE2" id="wwQ-yO-hwR"/>
                         <outletCollection property="cardButtons" destination="gQw-5J-kUj" id="gbx-LY-6Nu"/>
                         <outletCollection property="cardButtons" destination="sqU-OL-gLh" id="VcM-5E-jO9"/>

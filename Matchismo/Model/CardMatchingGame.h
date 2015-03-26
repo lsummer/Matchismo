@@ -18,6 +18,7 @@
 - (void)chooseCardAtIndex:(NSUInteger)index;
 - (Card *)cardAtIndex:(NSUInteger)index;
 - (void)resetGame;
+- (void)setGameTypeTo:(NSUInteger)type;
 
 @property (nonatomic, readonly) NSInteger score; // make score read only in public API
 

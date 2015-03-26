@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSMutableArray *cards; // of Card
 @property (nonatomic, strong) Deck *deck;
 @property (nonatomic, readwrite) NSInteger count;
+@property (nonatomic, readwrite) NSInteger gameType;
 
 @end
 
@@ -55,41 +56,46 @@ static const int COST_TO_CHOOSE = 1;
 
 - (void)chooseCardAtIndex:(NSUInteger)index
 {
+    NSInteger cumulativeScore=0;
     Card *card = [self cardAtIndex:index];
     
-    if (!card.isMatched) {
-        if (card.isChosen) {
-            card.chosen = NO;
-        } else {
-            // match against another card
-            for (Card *otherCard in self.cards) {
-                if (otherCard.isChosen && !otherCard.isMatched) {
-                    int matchScore = [card match:@[otherCard]];
-                    
-                    if (matchScore) {
-                        // increase score
-                        self.score += (matchScore * MATCH_BONUS);
+    if (self.gameType==2){
+        if (!card.isMatched) {
+            if (card.isChosen) {
+                card.chosen = NO;
+            } else {
+                // match against another card
+                for (Card *otherCard in self.cards) {
+                    if (otherCard.isChosen && !otherCard.isMatched) {
+                        int matchScore = [card match:@[otherCard]];
                         
-                        // mark cards as matched
-                        card.matched = YES;
-                        otherCard.matched = YES;
-                    } else {
-                        // mismath penalty when cards do no match
-                        self.score -= MISMATCH_PENALTY;
+                        if (matchScore) {
+                            // increase score
+                            self.score += (matchScore * MATCH_BONUS);
+                            
+                            // mark cards as matched
+                            card.matched = YES;
+                            otherCard.matched = YES;
+                        } else {
+                            // mismath penalty when cards do no match
+                            self.score -= MISMATCH_PENALTY;
+                            
+                            // flip othercard
+                            otherCard.chosen = NO;
+                        }
                         
-                        // flip othercard
-                        otherCard.chosen = NO;
+                        break;
                     }
-
-                    break;
                 }
+                self.score += cumulativeScore;
+                card.chosen = YES;
             }
-            
-            self.score -= COST_TO_CHOOSE;
-            card.chosen = YES;
         }
-    }
+    }else{
+            }
 }
+
+
 
 - (Card *)cardAtIndex:(NSUInteger)index
 {
@@ -107,5 +113,9 @@ static const int COST_TO_CHOOSE = 1;
             break;
         }
     }
+}
+-(void)setGameTypeTo:(NSUInteger)type{
+    self.gameType = type;
+    [self resetGame];
 }
 @end
